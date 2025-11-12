@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+#root {
+  --backgrond-radial-color: linear-gradient(90deg,rgba(32, 104, 122, 1) 1%, rgba(130, 97, 75, 1) 50%, rgba(37, 37, 77, 1) 100%);
+  --backgroud-color: #101A22;
+  --secondary-color: #117DD4;
+  --text-color: #edf3f4;
+  margin: 0; 
+  padding: 0;
+  text-align: center;
+}
+
+#root{
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.appContainer {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  background: #00031f;
+  background: radial-gradient(circle,rgba(0, 3, 31, 1) 0%, rgba(52, 52, 115, 1) 35%, rgba(0, 36, 36, 1) 100%);
+}
+
+
