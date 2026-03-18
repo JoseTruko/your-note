@@ -1,0 +1,244 @@
+/* VS Code Layout */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    color: #cccccc;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Title Bar */
+.titleBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    background: #323233;
+    border-bottom: 1px solid #2d2d30;
+    padding: 0 8px;
+    user-select: none;
+    -webkit-app-region: drag;
+}
+
+.titleBarLeft {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menuButton {
+    background: none;
+    border: none;
+    color: #cccccc;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-app-region: no-drag;
+    transition: background 0.2s ease;
+}
+
+.menuButton:hover {
+    background: #3c3c3c;
+}
+
+.appTitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #cccccc;
+}
+
+.titleBarCenter {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.currentFile {
+    font-size: 13px;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.modified {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.titleBarRight {
+    display: flex;
+    align-items: center;
+}
+
+.windowControl {
+    background: none;
+    border: none;
+    color: #cccccc;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-app-region: no-drag;
+    transition: background 0.2s ease;
+}
+
+.windowControl:hover {
+    background: #3c3c3c;
+}
+
+.windowControl:last-child:hover {
+    background: #e81123;
+    color: white;
+}
+
+/* Main Content */
+.mainContent {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .layout {
+        max-width: 100%;
+        margin: 0 1rem;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .layout {
+        height: 85vh;
+        margin: 0 0.5rem;
+        border-radius: 6px;
+    }
+    
+    .titleBar {
+        height: 40px;
+        padding: 0 6px;
+    }
+    
+    .titleBarCenter {
+        display: none;
+    }
+    
+    .menuButton {
+        padding: 6px 10px;
+        font-size: 16px;
+    }
+    
+    .appTitle {
+        font-size: 12px;
+    }
+    
+    .windowControl {
+        padding: 8px 8px;
+        font-size: 14px;
+    }
+    
+    .currentFile {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .layout {
+        height: 90vh;
+        margin: 0 0.25rem;
+        border-radius: 4px;
+    }
+    
+    .titleBar {
+        height: 45px;
+        padding: 0 4px;
+    }
+    
+    .titleBarRight {
+        gap: 2px;
+    }
+    
+    .windowControl {
+        padding: 6px 6px;
+        font-size: 12px;
+    }
+    
+    .appTitle {
+        display: none;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .layout {
+        height: 95vh;
+    }
+    
+    .titleBar {
+        height: 35px;
+    }
+}
+
+/* Sidebar Overlay for Mobile */
+.sidebarOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Mobile Responsive Enhancements */
+@media (max-width: 768px) {
+    .sidebarOverlay {
+        display: block;
+    }
+    
+    .mainContent {
+        position: relative;
+    }
+}
+
+/* Ultra small screens adjustments */
+@media (max-width: 360px) {
+    .layout {
+        height: 90vh;
+        margin: 0 0.25rem;
+        border-radius: 4px;
+    }
+    
+    .titleBar {
+        height: 45px;
+        padding: 0 4px;
+    }
+    
+    .titleBarRight {
+        gap: 2px;
+    }
+    
+    .windowControl {
+        padding: 6px 6px;
+        font-size: 12px;
+    }
+    
+    .appTitle {
+        display: none;
+    }
+}

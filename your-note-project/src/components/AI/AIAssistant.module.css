@@ -1,0 +1,691 @@
+/* AI Assistant Container */
+.aiAssistant {
+    position: relative;
+}
+
+/* AI Toggle Button */
+.aiToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 32px;
+    height: 32px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(138, 43, 226, 0.4);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.1));
+    color: #8a2be2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.aiToggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.aiToggle:hover::before {
+    left: 100%;
+}
+
+.aiToggle:hover {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(75, 0, 130, 0.2));
+    border-color: rgba(138, 43, 226, 0.6);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
+}
+
+.closeIcon {
+    margin-left: 4px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* AI Panel */
+.aiPanel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    max-width: 90vw;
+    max-height: 80vh;
+    background: #2d2d30;
+    border: 1px solid #454545;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    z-index: 100001;
+    overflow: hidden;
+    animation: slideInAI 0.3s ease-out;
+}
+
+/* Backdrop */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 100000;
+    animation: fadeInBackdrop 0.3s ease-out;
+}
+
+/* AI Header */
+.aiHeader {
+    background: linear-gradient(135deg, #8a2be2, #4b0082);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aiTabs {
+    display: flex;
+    flex: 1;
+}
+
+.aiTab {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.aiTab:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.aiTab.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.closeButton {
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+/* AI Content */
+.aiContent {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+/* Tools Panel */
+.toolsPanel {
+    padding: 16px;
+}
+
+.toolsHeader {
+    margin-bottom: 16px;
+}
+
+.toolsHeader h3 {
+    margin: 0 0 4px 0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.toolsHeader p {
+    margin: 0;
+    color: #858585;
+    font-size: 11px;
+}
+
+.apiStatus {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.apiStatus a {
+    color: #007acc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.apiStatus a:hover {
+    color: #ffffff;
+}
+
+/* Tools Grid */
+.toolsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.aiTool {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.aiTool:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--tool-color, #8a2be2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.aiTool:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.toolIcon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.toolInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.toolName {
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.toolDesc {
+    font-size: 9px;
+    color: #858585;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Selected Text */
+.selectedText {
+    background: rgba(0, 122, 204, 0.1);
+    border: 1px solid rgba(0, 122, 204, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.selectedText h4 {
+    margin: 0 0 8px 0;
+    color: #007acc;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.selectedText p {
+    margin: 0;
+    color: #cccccc;
+    font-size: 11px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+/* Loading */
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(138, 43, 226, 0.1);
+    border-radius: 8px;
+    color: #8a2be2;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(138, 43, 226, 0.3);
+    border-top: 2px solid #8a2be2;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Chat Panel */
+.chatPanel {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+}
+
+.chatMessages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chatMessage {
+    display: flex;
+    max-width: 80%;
+}
+
+.chatMessage.user {
+    align-self: flex-end;
+}
+
+.chatMessage.assistant {
+    align-self: flex-start;
+}
+
+.messageContent {
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+.chatMessage.user .messageContent {
+    background: #007acc;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.chatMessage.assistant .messageContent {
+    background: rgba(255, 255, 255, 0.1);
+    color: #cccccc;
+    border-bottom-left-radius: 4px;
+}
+
+/* Typing Indicator */
+.typingIndicator {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typingIndicator span {
+    width: 6px;
+    height: 6px;
+    background: #858585;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typingIndicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typingIndicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Chat Form */
+.chatForm {
+    display: flex;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 8px;
+}
+
+.chatInput {
+    flex: 1;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 12px;
+    outline: none;
+}
+
+.chatInput:focus {
+    border-color: #8a2be2;
+    box-shadow: 0 0 0 2px rgba(138, 43, 226, 0.2);
+}
+
+.chatInput::placeholder {
+    color: #858585;
+}
+
+.chatSend {
+    width: 32px;
+    height: 32px;
+    background: #8a2be2;
+    border: none;
+    border-radius: 50%;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatSend:hover:not(:disabled) {
+    background: #9932cc;
+    transform: scale(1.05);
+}
+
+.chatSend:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Scrollbar */
+.aiContent::-webkit-scrollbar,
+.chatMessages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.aiContent::-webkit-scrollbar-track,
+.chatMessages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.aiContent::-webkit-scrollbar-thumb,
+.chatMessages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+/* Animations */
+@keyframes slideInAI {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeInBackdrop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .aiPanel {
+        width: 90vw;
+        max-width: 400px;
+        max-height: 85vh;
+    }
+    
+    .toolsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .aiTool {
+        padding: 10px;
+    }
+    
+    .toolName {
+        font-size: 10px;
+    }
+    
+    .toolDesc {
+        font-size: 8px;
+    }
+    
+    .chatPanel {
+        height: 350px;
+    }
+    
+    .chatMessages {
+        padding: 12px;
+    }
+    
+    .messageContent {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+    
+    .chatForm {
+        padding: 10px 12px;
+    }
+    
+    .chatInput {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+    
+    .chatSend {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aiPanel {
+        width: 95vw;
+        max-width: 350px;
+        max-height: 80vh;
+    }
+    
+    .aiHeader {
+        padding: 0;
+    }
+    
+    .aiTab {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+    
+    .closeButton {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+    
+    .toolsPanel {
+        padding: 12px;
+    }
+    
+    .toolsHeader h3 {
+        font-size: 12px;
+    }
+    
+    .toolsHeader p {
+        font-size: 10px;
+    }
+    
+    .aiTool {
+        padding: 8px;
+    }
+    
+    .toolIcon {
+        font-size: 14px;
+    }
+    
+    .toolName {
+        font-size: 9px;
+    }
+    
+    .toolDesc {
+        font-size: 7px;
+    }
+    
+    .selectedText {
+        padding: 8px;
+    }
+    
+    .selectedText h4 {
+        font-size: 10px;
+    }
+    
+    .selectedText p {
+        font-size: 9px;
+    }
+    
+    .chatPanel {
+        height: 300px;
+    }
+    
+    .chatMessages {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .messageContent {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+    
+    .chatForm {
+        padding: 8px 10px;
+    }
+    
+    .chatInput {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+    
+    .chatSend {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .aiPanel {
+        width: 98vw;
+        max-width: 320px;
+        max-height: 75vh;
+    }
+    
+    .aiTab {
+        padding: 8px 10px;
+        font-size: 10px;
+    }
+    
+    .closeButton {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+    
+    .toolsPanel {
+        padding: 8px;
+    }
+    
+    .toolsHeader h3 {
+        font-size: 11px;
+    }
+    
+    .toolsHeader p {
+        font-size: 9px;
+    }
+    
+    .aiTool {
+        padding: 6px;
+    }
+    
+    .toolIcon {
+        font-size: 12px;
+    }
+    
+    .toolName {
+        font-size: 8px;
+    }
+    
+    .toolDesc {
+        font-size: 6px;
+        -webkit-line-clamp: 1;
+    }
+    
+    .chatPanel {
+        height: 250px;
+    }
+    
+    .chatMessages {
+        padding: 6px;
+    }
+    
+    .messageContent {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+    
+    .chatForm {
+        padding: 6px 8px;
+    }
+    
+    .chatInput {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+    
+    .chatSend {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,297 @@
+/* Editor Container */
+.editorContainer {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(16, 26, 34, 0.95);
+    border-radius: 16px;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.editorContainer:hover {
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(17, 125, 212, 0.3);
+}
+
+/* Fullscreen mode */
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    border-radius: 0;
+    z-index: 1000;
+}
+
+/* Editor Header */
+.editorHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, rgba(17, 125, 212, 0.1), rgba(130, 97, 75, 0.1));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.titleSection {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.titleInput {
+    background: transparent;
+    border: none;
+    color: #edf3f4;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.titleInput:focus {
+    outline: none;
+    background: rgba(17, 125, 212, 0.1);
+    box-shadow: 0 0 0 2px rgba(17, 125, 212, 0.3);
+}
+
+.titleInput::placeholder {
+    color: rgba(237, 243, 244, 0.5);
+}
+
+.wordCount {
+    color: rgba(237, 243, 244, 0.7);
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.editorActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actionBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #edf3f4;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actionBtn:hover {
+    background: rgba(17, 125, 212, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(17, 125, 212, 0.2);
+}
+
+.actionBtn:active {
+    transform: translateY(0);
+}
+
+/* Editor Wrapper */
+.editorWrapper {
+    position: relative;
+    min-height: 500px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.fullscreen .editorWrapper {
+    max-height: calc(100vh - 140px);
+}
+
+/* Quill Editor Customization */
+.editor :global(.ql-toolbar) {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+}
+
+.editor :global(.ql-toolbar .ql-stroke) {
+    stroke: #edf3f4;
+}
+
+.editor :global(.ql-toolbar .ql-fill) {
+    fill: #edf3f4;
+}
+
+.editor :global(.ql-toolbar .ql-picker-label) {
+    color: #edf3f4;
+}
+
+.editor :global(.ql-toolbar button:hover),
+.editor :global(.ql-toolbar button.ql-active) {
+    background: rgba(17, 125, 212, 0.3);
+    border-radius: 4px;
+}
+
+.editor :global(.ql-container) {
+    background: transparent;
+    border: none;
+    color: #edf3f4;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.editor :global(.ql-editor) {
+    padding: 2rem;
+    min-height: 400px;
+}
+
+.editor :global(.ql-editor.ql-blank::before) {
+    color: rgba(237, 243, 244, 0.5);
+    font-style: italic;
+}
+
+/* Content Styling */
+.editor :global(.ql-editor h1),
+.editor :global(.ql-editor h2),
+.editor :global(.ql-editor h3),
+.editor :global(.ql-editor h4),
+.editor :global(.ql-editor h5),
+.editor :global(.ql-editor h6) {
+    color: #117DD4;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.editor :global(.ql-editor h1) {
+    font-size: 2.5rem;
+    border-bottom: 2px solid rgba(17, 125, 212, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.editor :global(.ql-editor h2) {
+    font-size: 2rem;
+}
+
+.editor :global(.ql-editor h3) {
+    font-size: 1.5rem;
+}
+
+.editor :global(.ql-editor blockquote) {
+    border-left: 4px solid #117DD4;
+    background: rgba(17, 125, 212, 0.1);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+.editor :global(.ql-editor pre) {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.editor :global(.ql-editor a) {
+    color: #117DD4;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.editor :global(.ql-editor a:hover) {
+    border-bottom-color: #117DD4;
+}
+
+.editor :global(.ql-editor ul),
+.editor :global(.ql-editor ol) {
+    padding-left: 1.5rem;
+}
+
+.editor :global(.ql-editor li) {
+    margin-bottom: 0.5rem;
+}
+
+/* Editor Footer */
+.editorFooter {
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statusInfo {
+    color: rgba(237, 243, 244, 0.6);
+    font-size: 0.85rem;
+}
+
+/* Scrollbar Styling */
+.editorWrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editorWrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.editorWrapper::-webkit-scrollbar-thumb {
+    background: rgba(17, 125, 212, 0.3);
+    border-radius: 4px;
+}
+
+.editorWrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(17, 125, 212, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .editorHeader {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .titleSection {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .titleInput {
+        min-width: auto;
+        flex: 1;
+    }
+    
+    .editor :global(.ql-toolbar) {
+        padding: 0.5rem;
+    }
+    
+    .editor :global(.ql-editor) {
+        padding: 1rem;
+    }
+    
+    .actionBtn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+}

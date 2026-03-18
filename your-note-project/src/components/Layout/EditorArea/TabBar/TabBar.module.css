@@ -1,0 +1,212 @@
+/* Tab Bar */
+.tabBar {
+    display: flex;
+    align-items: center;
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+    height: 35px;
+    overflow: hidden;
+}
+
+.tabList {
+    display: flex;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.tabList::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual Tab */
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    height: 35px;
+    background: #2d2d30;
+    border-right: 1px solid #3e3e42;
+    cursor: pointer;
+    user-select: none;
+    min-width: 120px;
+    max-width: 200px;
+    position: relative;
+    transition: background-color 0.1s ease;
+}
+
+.tab:hover {
+    background: #37373d;
+}
+
+.tab.active {
+    background: #1e1e1e;
+    border-bottom: 1px solid #1e1e1e;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #007acc;
+}
+
+.tab.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+}
+
+/* Tab Content */
+.tabIcon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.tabTitle {
+    flex: 1;
+    font-size: 13px;
+    color: #cccccc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.tab.active .tabTitle {
+    color: #ffffff;
+}
+
+.modifiedIndicator {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.closeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    background: none;
+    border: none;
+    color: #858585;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: all 0.1s ease;
+}
+
+.tab:hover .closeButton {
+    opacity: 1;
+}
+
+.closeButton:hover {
+    background: #e81123;
+    color: #ffffff;
+}
+
+/* Tab Actions */
+.tabActions {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-left: 1px solid #3e3e42;
+}
+
+.actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: none;
+    border: none;
+    color: #858585;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.actionButton:hover {
+    background: #3c3c3c;
+    color: #cccccc;
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    .tab {
+        min-width: 100px;
+        max-width: 150px;
+        padding: 0 8px;
+    }
+    
+    .tabTitle {
+        font-size: 12px;
+    }
+    
+    .closeButton {
+        opacity: 1; /* Always show on mobile */
+    }
+}
+
+/* Scrollbar for tab overflow */
+.tabList {
+    scrollbar-width: thin;
+    scrollbar-color: #424242 transparent;
+}
+
+.tabList::-webkit-scrollbar {
+    height: 3px;
+    display: block;
+}
+
+.tabList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tabList::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 3px;
+}
+
+.tabList::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+/* Animation for new tabs */
+@keyframes slideInTab {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.tab {
+    animation: slideInTab 0.2s ease-out;
+}
+
+/* Focus styles for accessibility */
+.tab:focus-visible {
+    outline: 2px solid #007acc;
+    outline-offset: -2px;
+}
+
+.closeButton:focus-visible {
+    outline: 1px solid #007acc;
+    outline-offset: 1px;
+}

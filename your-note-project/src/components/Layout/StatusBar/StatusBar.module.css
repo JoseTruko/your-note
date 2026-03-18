@@ -1,0 +1,119 @@
+/* Status Bar */
+.statusBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 22px;
+    background: #007acc;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 0 8px;
+    user-select: none;
+    overflow: hidden;
+}
+
+.statusLeft,
+.statusRight {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.statusItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .statusBar {
+        font-size: 11px;
+        padding: 0 4px;
+    }
+    
+    .statusLeft,
+    .statusRight {
+        gap: 8px;
+    }
+    
+    .statusItem {
+        padding: 2px 4px;
+    }
+    
+    /* Hide some items on mobile */
+    .statusLeft .statusItem:nth-child(n+3) {
+        display: none;
+    }
+    
+    .statusRight .statusItem:nth-child(n+3) {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .statusBar {
+        font-size: 10px;
+    }
+    
+    .statusLeft,
+    .statusRight {
+        gap: 4px;
+    }
+    
+    /* Show only essential items on very small screens */
+    .statusLeft .statusItem:nth-child(n+2) {
+        display: none;
+    }
+    
+    .statusRight .statusItem:nth-child(n+2) {
+        display: none;
+    }
+}
+
+/* Animation for status changes */
+@keyframes statusUpdate {
+    0% {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+.statusItem.updated {
+    animation: statusUpdate 0.3s ease;
+}
+
+/* Different status bar colors for different states */
+.statusBar.error {
+    background: #e74c3c;
+}
+
+.statusBar.warning {
+    background: #f39c12;
+}
+
+.statusBar.success {
+    background: #27ae60;
+}
+
+/* Accessibility */
+.statusItem:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 1px;
+}
