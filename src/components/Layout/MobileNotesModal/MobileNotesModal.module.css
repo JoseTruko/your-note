@@ -1,0 +1,424 @@
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    display: flex;
+    align-items: flex-end;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Modal Content */
+.modalContent {
+    width: 100%;
+    max-height: 85vh;
+    background: #2d2d30;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modal Header */
+.modalHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #007acc, #005a9e);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.closeButton {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Search Section */
+.searchSection {
+    padding: 16px 20px;
+    background: #383838;
+    border-bottom: 1px solid #454545;
+}
+
+.searchInputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    font-size: 16px;
+    color: #858585;
+    z-index: 1;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 12px 12px 12px 40px;
+    background: #2d2d30;
+    border: 2px solid #454545;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+}
+
+.searchInput::placeholder {
+    color: #858585;
+}
+
+/* Action Section */
+.actionSection {
+    padding: 16px 20px;
+    background: #383838;
+    border-bottom: 1px solid #454545;
+}
+
+.newNoteButton {
+    width: 100%;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.newNoteButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(40, 167, 69, 0.4);
+}
+
+.newNoteButton:active {
+    transform: translateY(0);
+}
+
+.newNoteButton.creating {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(108, 117, 125, 0.3);
+}
+
+.newNoteButton:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.newNoteIcon {
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+/* Notes Section */
+.notesSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.notesHeader {
+    padding: 12px 20px;
+    background: #383838;
+    border-bottom: 1px solid #454545;
+}
+
+.notesCount {
+    font-size: 12px;
+    color: #858585;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.notesList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+/* Note Item */
+.noteItem {
+    padding: 16px 20px;
+    border-bottom: 1px solid #454545;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #2d2d30;
+}
+
+.noteItem:hover {
+    background: #383838;
+}
+
+.noteItem:active {
+    background: #454545;
+}
+
+.noteItem.activeNote {
+    background: rgba(0, 122, 204, 0.1);
+    border-left: 4px solid #007acc;
+}
+
+.noteContent {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.noteHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.noteTitle {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.modifiedDot {
+    color: #28a745;
+    font-size: 12px;
+}
+
+.deleteButton {
+    background: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.deleteButton:hover {
+    background: rgba(220, 53, 69, 0.2);
+    border-color: rgba(220, 53, 69, 0.5);
+    transform: scale(1.1);
+}
+
+.notePreview {
+    margin: 0;
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.4;
+    opacity: 0.8;
+}
+
+.noteFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.noteDate {
+    font-size: 12px;
+    color: #858585;
+}
+
+.currentBadge {
+    background: #007acc;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Empty State */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: #858585;
+}
+
+.emptyIcon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.emptyState p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #cccccc;
+}
+
+.emptyState small {
+    font-size: 14px;
+    color: #858585;
+}
+
+/* Scrollbar */
+.notesList::-webkit-scrollbar {
+    width: 4px;
+}
+
+.notesList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.notesList::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+.notesList::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .modalContent {
+        max-height: 90vh;
+    }
+    
+    .modalHeader {
+        padding: 12px 16px;
+    }
+    
+    .modalTitle {
+        font-size: 16px;
+    }
+    
+    .searchSection,
+    .actionSection {
+        padding: 12px 16px;
+    }
+    
+    .noteItem {
+        padding: 12px 16px;
+    }
+    
+    .noteTitle {
+        font-size: 15px;
+    }
+    
+    .notePreview {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modalHeader {
+        padding: 10px 12px;
+    }
+    
+    .modalTitle {
+        font-size: 15px;
+    }
+    
+    .searchSection,
+    .actionSection {
+        padding: 10px 12px;
+    }
+    
+    .noteItem {
+        padding: 10px 12px;
+    }
+    
+    .noteTitle {
+        font-size: 14px;
+    }
+    
+    .notePreview {
+        font-size: 12px;
+    }
+    
+    .deleteButton {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,555 @@
+/* Sidebar Container */
+.sidebar {
+    display: flex;
+    width: 300px;
+    background: #252526;
+    border-right: 1px solid #2d2d30;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    min-height: 100%;
+}
+
+/* Sidebar Tabs */
+.sidebarTabs {
+    display: flex;
+    flex-direction: column;
+    width: 48px;
+    background: #2c2c2c;
+    border-right: 1px solid #2d2d30;
+    flex-shrink: 0;
+    min-height: 100%;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: none;
+    border: none;
+    color: #858585;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tab:hover {
+    color: #cccccc;
+}
+
+.tab.active {
+    color: #ffffff;
+    background: #37373d;
+}
+
+.tab.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #007acc;
+}
+
+/* Sidebar Content */
+.sidebarContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+    background: #252526;
+}
+
+/* Panel Header */
+.panelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+    min-height: 35px;
+    flex-shrink: 0;
+}
+
+.panelTitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: #cccccc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.actionButton {
+    background: none;
+    border: none;
+    color: #cccccc;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 3px;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+}
+
+.actionButton:hover {
+    background: #3c3c3c;
+}
+
+/* Explorer Panel */
+.explorerPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.fileTree {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.folderHeader {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    font-size: 13px;
+    color: #cccccc;
+    font-weight: 600;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.folderIcon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.folderName {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fileCount {
+    color: #858585;
+    font-size: 11px;
+    flex-shrink: 0;
+}
+
+.fileList {
+    padding-left: 8px;
+}
+
+.fileItem {
+    display: flex;
+    align-items: center;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #cccccc;
+    gap: 6px;
+    border-radius: 3px;
+    margin: 1px 4px;
+    position: relative;
+    min-height: 24px;
+}
+
+.fileItem:hover {
+    background: #2a2d2e;
+}
+
+.fileItem.selected {
+    background: #37373d;
+    color: #ffffff;
+}
+
+.fileIcon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.fileName {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.modifiedIndicator {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.renameInput {
+    background: #3c3c3c;
+    border: 1px solid #007acc;
+    color: #cccccc;
+    padding: 2px 4px;
+    font-size: 13px;
+    border-radius: 2px;
+    outline: none;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Search Panel */
+.searchPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.searchInput {
+    padding: 8px 12px;
+    border-bottom: 1px solid #3e3e42;
+    flex-shrink: 0;
+}
+
+.searchField {
+    width: 100%;
+    background: #3c3c3c;
+    border: 1px solid #3e3e42;
+    color: #cccccc;
+    padding: 6px 8px;
+    font-size: 13px;
+    border-radius: 3px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.searchField:focus {
+    border-color: #007acc;
+}
+
+.searchResults {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.resultsHeader {
+    padding: 4px 12px;
+    font-size: 11px;
+    color: #858585;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.searchResult {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin: 1px 4px;
+}
+
+.searchResult:hover {
+    background: #2a2d2e;
+}
+
+.resultTitle {
+    font-size: 13px;
+    color: #cccccc;
+    font-weight: 500;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.resultPreview {
+    font-size: 11px;
+    color: #858585;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Git Panel */
+.gitPanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gitContent {
+    padding: 12px;
+}
+
+.gitStatus {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gitBranch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #cccccc;
+}
+
+.gitChanges {
+    font-size: 12px;
+    color: #858585;
+}
+
+/* Context Menu */
+.contextMenu {
+    background: #383838;
+    border: 1px solid #454545;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 4px 0;
+    min-width: 120px;
+    z-index: 1000;
+}
+
+.contextMenuItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 12px;
+    background: none;
+    border: none;
+    color: #cccccc;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: left;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.contextMenuItem:hover {
+    background: #2a2d2e;
+}
+
+/* Scrollbar Styling */
+.fileTree::-webkit-scrollbar,
+.searchResults::-webkit-scrollbar {
+    width: 8px;
+}
+
+.fileTree::-webkit-scrollbar-track,
+.searchResults::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.fileTree::-webkit-scrollbar-thumb,
+.searchResults::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 4px;
+}
+
+.fileTree::-webkit-scrollbar-thumb:hover,
+.searchResults::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        height: 100vh;
+        background: #252526;
+    }
+    
+    .sidebarTabs {
+        width: 44px;
+        background: #2c2c2c;
+    }
+    
+    .sidebarContent {
+        background: #252526;
+        flex: 1;
+    }
+    
+    .tab {
+        width: 44px;
+        height: 44px;
+        font-size: 15px;
+    }
+    
+    .panelHeader {
+        padding: 6px 10px;
+        background: #2d2d30;
+    }
+    
+    .panelTitle {
+        font-size: 10px;
+        color: #cccccc;
+    }
+    
+    .folderHeader {
+        padding: 4px 10px;
+        font-size: 12px;
+        color: #cccccc;
+    }
+    
+    .fileItem {
+        padding: 6px 10px;
+        font-size: 12px;
+        margin: 1px 2px;
+        color: #cccccc;
+    }
+    
+    .searchInput {
+        padding: 6px 10px;
+    }
+    
+    .searchField {
+        padding: 5px 6px;
+        font-size: 12px;
+        background: #3c3c3c;
+        color: #cccccc;
+    }
+}
+
+@media (max-width: 640px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .sidebarTabs {
+        width: 40px;
+    }
+    
+    .tab {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .panelTitle {
+        font-size: 9px;
+    }
+    
+    .folderHeader {
+        font-size: 11px;
+    }
+    
+    .fileItem {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+    
+    .fileName {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 220px;
+    }
+    
+    .sidebarTabs {
+        width: 36px;
+    }
+    
+    .tab {
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
+    }
+    
+    .panelHeader {
+        padding: 4px 8px;
+        min-height: 30px;
+    }
+    
+    .panelTitle {
+        font-size: 8px;
+    }
+    
+    .actionButton {
+        padding: 3px;
+        font-size: 11px;
+    }
+    
+    .folderHeader {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    
+    .fileItem {
+        padding: 4px 8px;
+        font-size: 10px;
+        min-height: 20px;
+    }
+    
+    .fileIcon {
+        font-size: 12px;
+    }
+    
+    .searchInput {
+        padding: 4px 8px;
+    }
+    
+    .searchField {
+        padding: 4px 6px;
+        font-size: 11px;
+    }
+    
+    .searchResult {
+        padding: 6px 8px;
+    }
+    
+    .resultTitle {
+        font-size: 11px;
+    }
+    
+    .resultPreview {
+        font-size: 10px;
+    }
+}
+
+/* Ultra small screens */
+@media (max-width: 360px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .folderName {
+        display: none;
+    }
+    
+    .fileCount {
+        display: none;
+    }
+    
+    .panelTitle {
+        display: none;
+    }
+}

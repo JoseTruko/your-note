@@ -1,0 +1,306 @@
+/* Editor Area */
+.editorArea {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    overflow: hidden;
+}
+
+/* Welcome Screen */
+.welcomeScreen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: #1e1e1e;
+}
+
+.welcomeContent {
+    max-width: 600px;
+    text-align: center;
+    color: #cccccc;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.logoIcon {
+    font-size: 3rem;
+}
+
+.logoText {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #007acc;
+    margin: 0;
+}
+
+.welcomeMessage {
+    font-size: 1.2rem;
+    color: #858585;
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+.quickActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.actionGroup h3 {
+    color: #cccccc;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.actionGroup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.actionGroup li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    color: #858585;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 3px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.actionGroup li:hover {
+    background: #2a2d2e;
+    color: #cccccc;
+}
+
+.shortcut {
+    background: #3c3c3c;
+    color: #cccccc;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    margin-right: 0.5rem;
+}
+
+.tips {
+    text-align: left;
+    background: #252526;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #3e3e42;
+}
+
+.tips h3 {
+    color: #cccccc;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tips li {
+    color: #858585;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.tips strong {
+    color: #cccccc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .welcomeScreen {
+        padding: 1rem;
+    }
+    
+    .logoText {
+        font-size: 2rem;
+    }
+    
+    .welcomeMessage {
+        font-size: 1rem;
+    }
+    
+    .quickActions {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .tips {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .logoIcon {
+        font-size: 2.5rem;
+    }
+    
+    .logoText {
+        font-size: 1.8rem;
+    }
+}
+/* Action Buttons */
+.actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: #858585;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.actionButton:hover {
+    background: #2a2d2e;
+    color: #cccccc;
+}
+
+.actionButton:active {
+    background: #007acc;
+    color: #ffffff;
+}
+
+/* Recent Notes Buttons */
+.recentButton {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    background: transparent;
+    border: none;
+    color: #858585;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    text-align: left;
+    gap: 0.5rem;
+}
+
+.recentButton:hover {
+    background: #2a2d2e;
+    color: #cccccc;
+}
+
+.recentButton:active {
+    background: #007acc;
+    color: #ffffff;
+}
+
+.emptyRecent {
+    color: #555555;
+    font-style: italic;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .welcomeScreen {
+        padding: 1rem;
+    }
+    
+    .welcomeContent {
+        max-width: 100%;
+    }
+    
+    .logoText {
+        font-size: 2rem;
+    }
+    
+    .welcomeMessage {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .quickActions {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .actionButton,
+    .recentButton {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcomeScreen {
+        padding: 0.5rem;
+    }
+    
+    .logo {
+        margin-bottom: 1.5rem;
+    }
+    
+    .logoIcon {
+        font-size: 2.5rem;
+    }
+    
+    .logoText {
+        font-size: 1.75rem;
+    }
+    
+    .welcomeMessage {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .quickActions {
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .actionGroup h3 {
+        font-size: 0.9rem;
+    }
+    
+    .actionButton,
+    .recentButton {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .shortcut {
+        font-size: 0.7rem;
+        padding: 0.1rem 0.3rem;
+    }
+}

@@ -1,0 +1,892 @@
+/* Editor Container */
+.editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    overflow: hidden;
+    min-width: 0;
+}
+
+/* Custom Toolbar */
+.toolbar {
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    position: relative;
+    z-index: 1000;
+}
+
+.toolbar::-webkit-scrollbar {
+    display: none;
+}
+
+.toolGroup {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding-right: 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.toolGroup:last-child {
+    border-right: none;
+}
+
+/* Tool Buttons */
+.toolButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.toolButton:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toolButton:active {
+    background: #ffffff;
+    color: #2d2d30;
+    border-color: #ffffff;
+    transform: translateY(0);
+}
+
+/* Select Dropdowns */
+.headerSelect,
+.sizeSelect {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px;
+}
+
+.headerSelect:hover,
+.sizeSelect:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.headerSelect:focus,
+.sizeSelect:focus {
+    outline: none;
+    background: #ffffff;
+    color: #2d2d30;
+    border-color: #ffffff;
+}
+
+.headerSelect option,
+.sizeSelect option {
+    background: #2d2d30;
+    color: #ffffff;
+    padding: 8px;
+}
+
+/* Color Pickers */
+.colorPicker {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.colorPicker:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Download Button and Menu */
+.downloadGroup {
+    position: relative;
+    z-index: 10000;
+}
+
+.downloadButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 32px;
+    height: 32px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(40, 167, 69, 0.4);
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.downloadButton:hover {
+    background: rgba(40, 167, 69, 0.2);
+    border-color: rgba(40, 167, 69, 0.6);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.downloadButton:active {
+    background: #28a745;
+    color: #ffffff;
+    border-color: #28a745;
+    transform: translateY(0);
+}
+
+.dropdownArrow {
+    font-size: 10px;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+}
+
+.downloadGroup:hover .dropdownArrow {
+    transform: rotate(180deg);
+}
+
+/* Download Menu */
+.downloadMenu {
+    position: fixed;
+    top: auto;
+    left: auto;
+    margin-top: 4px;
+    background: #383838;
+    border: 1px solid #454545;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    min-width: 220px;
+    z-index: 99999;
+    overflow: hidden;
+    animation: slideDown 0.2s ease-out;
+}
+
+.downloadMenuHeader {
+    padding: 12px 16px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #858585;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.downloadOption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    color: #cccccc;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.downloadOption:hover {
+    background: rgba(40, 167, 69, 0.1);
+    color: #ffffff;
+}
+
+.downloadOption:last-child {
+    border-bottom: none;
+}
+
+.optionIcon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.optionInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.optionTitle {
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.optionDesc {
+    font-size: 11px;
+    color: #858585;
+    line-height: 1.2;
+}
+
+.downloadOption:hover .optionTitle {
+    color: #28a745;
+}
+
+.downloadOption:hover .optionDesc {
+    color: #cccccc;
+}
+
+/* Animation for dropdown */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Editor Content */
+.editorContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.editableArea {
+    flex: 1;
+    padding: 24px;
+    background: #1e1e1e;
+    color: #cccccc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-y: auto;
+    min-height: 400px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+    z-index: 1;
+}
+
+.editableArea:empty::before {
+    content: 'Comienza a escribir tu nota aquí...';
+    color: #858585;
+    font-style: italic;
+    pointer-events: none;
+}
+
+/* Content Styling */
+.editableArea h1 {
+    font-size: 2.5rem;
+    color: #007acc;
+    margin: 1.5rem 0 1rem 0;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(0, 122, 204, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.editableArea h2 {
+    font-size: 2rem;
+    color: #007acc;
+    margin: 1.25rem 0 0.75rem 0;
+    font-weight: 600;
+}
+
+.editableArea h3 {
+    font-size: 1.5rem;
+    color: #007acc;
+    margin: 1rem 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.editableArea h4 {
+    font-size: 1.25rem;
+    color: #007acc;
+    margin: 0.75rem 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.editableArea h5 {
+    font-size: 1.1rem;
+    color: #007acc;
+    margin: 0.75rem 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.editableArea h6 {
+    font-size: 1rem;
+    color: #007acc;
+    margin: 0.75rem 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.editableArea p {
+    margin: 0.75rem 0;
+    line-height: 1.6;
+}
+
+.editableArea strong {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.editableArea em {
+    color: #e6e6e6;
+    font-style: italic;
+}
+
+.editableArea blockquote {
+    border-left: 4px solid #007acc;
+    background: rgba(0, 122, 204, 0.1);
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #e6e6e6;
+}
+
+.editableArea ul,
+.editableArea ol {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+}
+
+.editableArea li {
+    margin: 0.25rem 0;
+    line-height: 1.6;
+}
+
+.editableArea a {
+    color: #007acc;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.editableArea a:hover {
+    border-bottom-color: #007acc;
+}
+
+.editableArea img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.editableArea code {
+    background: rgba(110, 118, 129, 0.4);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #f85149;
+}
+
+/* Editor Footer */
+.editorFooter {
+    background: #2d2d30;
+    border-top: 1px solid #3e3e42;
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #cccccc;
+    flex-shrink: 0;
+}
+
+.statusInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.breadcrumb {
+    color: #858585;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+}
+
+.editorStats {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.wordCount {
+    color: #007acc;
+    font-weight: 600;
+}
+
+.selectedCount {
+    color: #28a745;
+    font-weight: 500;
+    font-size: 10px;
+}
+
+.language,
+.encoding,
+.status {
+    color: #858585;
+    font-size: 11px;
+}
+
+.language {
+    text-transform: capitalize;
+}
+
+.status {
+    color: #28a745;
+}
+
+/* Scrollbar Styling */
+.editableArea::-webkit-scrollbar {
+    width: 12px;
+}
+
+.editableArea::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+.editableArea::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 6px;
+    border: 2px solid #1e1e1e;
+}
+
+.editableArea::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+}
+
+/* Selection Styling */
+.editableArea ::selection {
+    background: #264f78;
+}
+
+.editableArea ::-moz-selection {
+    background: #264f78;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .toolbar {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+    
+    .toolGroup {
+        gap: 5px;
+        padding-right: 10px;
+    }
+    
+    .toolButton {
+        min-width: 30px;
+        height: 30px;
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .headerSelect,
+    .sizeSelect {
+        min-width: 90px;
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .colorPicker {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .editableArea {
+        padding: 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .toolbar {
+        padding: 8px 12px;
+        gap: 8px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+    
+    .toolGroup {
+        gap: 4px;
+        padding-right: 8px;
+        flex-shrink: 0;
+    }
+    
+    .toolButton {
+        min-width: 28px;
+        height: 28px;
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+    
+    .headerSelect,
+    .sizeSelect {
+        min-width: 80px;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+    
+    .colorPicker {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .editableArea {
+        padding: 16px;
+        font-size: 14px;
+    }
+    
+    .editableArea h1 {
+        font-size: 2rem;
+    }
+    
+    .editableArea h2 {
+        font-size: 1.75rem;
+    }
+    
+    .editableArea h3 {
+        font-size: 1.5rem;
+    }
+    
+    .editorFooter {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+    
+    .statusInfo {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
+    }
+    
+    .editorStats {
+        gap: 12px;
+        font-size: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .downloadMenu {
+        min-width: 200px;
+        right: 0;
+        left: auto;
+        z-index: 99999;
+    }
+}
+
+@media (max-width: 640px) {
+    .toolbar {
+        padding: 6px 10px;
+        gap: 6px;
+    }
+    
+    .toolGroup {
+        gap: 3px;
+        padding-right: 6px;
+    }
+    
+    .toolButton {
+        min-width: 26px;
+        height: 26px;
+        padding: 3px 6px;
+        font-size: 9px;
+    }
+    
+    .headerSelect,
+    .sizeSelect {
+        min-width: 70px;
+        font-size: 9px;
+        padding: 3px 6px;
+    }
+    
+    .colorPicker {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .editableArea {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .editableArea h1 {
+        font-size: 1.75rem;
+    }
+    
+    .editableArea h2 {
+        font-size: 1.5rem;
+    }
+    
+    .editableArea h3 {
+        font-size: 1.25rem;
+    }
+    
+    .downloadMenu {
+        min-width: 180px;
+    }
+    
+    .downloadOption {
+        padding: 10px 12px;
+    }
+    
+    .optionTitle {
+        font-size: 12px;
+    }
+    
+    .optionDesc {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toolbar {
+        padding: 4px 8px;
+        gap: 4px;
+    }
+    
+    .toolGroup {
+        gap: 2px;
+        padding-right: 4px;
+    }
+    
+    .toolButton {
+        min-width: 24px;
+        height: 24px;
+        padding: 2px 4px;
+        font-size: 8px;
+    }
+    
+    .headerSelect,
+    .sizeSelect {
+        min-width: 60px;
+        font-size: 8px;
+        padding: 2px 4px;
+    }
+    
+    .colorPicker {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .editableArea {
+        padding: 8px;
+        font-size: 12px;
+        min-height: 300px;
+    }
+    
+    .editableArea h1 {
+        font-size: 1.5rem;
+    }
+    
+    .editableArea h2 {
+        font-size: 1.25rem;
+    }
+    
+    .editableArea h3 {
+        font-size: 1.1rem;
+    }
+    
+    .breadcrumb {
+        display: none;
+    }
+    
+    .editorStats {
+        gap: 8px;
+    }
+    
+    .downloadMenu {
+        min-width: 160px;
+    }
+    
+    .downloadMenuHeader {
+        padding: 8px 12px 6px;
+        font-size: 10px;
+    }
+    
+    .downloadOption {
+        padding: 8px 12px;
+    }
+    
+    .optionIcon {
+        font-size: 16px;
+    }
+    
+    .optionTitle {
+        font-size: 11px;
+    }
+    
+    .optionDesc {
+        font-size: 9px;
+    }
+}
+
+/* Ultra small screens */
+@media (max-width: 360px) {
+    .toolbar {
+        padding: 2px 4px;
+        gap: 2px;
+    }
+    
+    .toolButton {
+        min-width: 20px;
+        height: 20px;
+        padding: 1px 2px;
+        font-size: 7px;
+    }
+    
+    .headerSelect,
+    .sizeSelect {
+        min-width: 50px;
+        font-size: 7px;
+    }
+    
+    .colorPicker {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .editableArea {
+        padding: 6px;
+        font-size: 11px;
+    }
+    
+    .editableArea h1 {
+        font-size: 1.25rem;
+    }
+    
+    .editableArea h2 {
+        font-size: 1.1rem;
+    }
+    
+    .editableArea h3 {
+        font-size: 1rem;
+    }
+    
+    .editorFooter {
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+    
+    .downloadMenu {
+        min-width: 140px;
+    }
+}
+
+/* Focus States for Accessibility */
+.toolButton:focus-visible,
+.headerSelect:focus-visible,
+.sizeSelect:focus-visible,
+.colorPicker:focus-visible {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+/* Animation for toolbar interactions */
+@keyframes toolbarPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.toolButton:active {
+    animation: toolbarPulse 0.1s ease;
+}
+
+/* Landscape orientation adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .editableArea {
+        padding: 12px;
+    }
+    
+    .toolbar {
+        padding: 6px 10px;
+    }
+    
+    .editorFooter {
+        padding: 4px 10px;
+    }
+}
+/* Disabled AI Button */
+.disabledButton {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: visible;
+}
+
+.disabledButton:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.constructionBadge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ffc107;
+    color: #000;
+    font-size: 8px;
+    padding: 2px 4px;
+    border-radius: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .constructionBadge {
+        font-size: 7px;
+        padding: 1px 3px;
+        top: -6px;
+        right: -6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .constructionBadge {
+        font-size: 6px;
+        padding: 1px 2px;
+        top: -4px;
+        right: -4px;
+    }
+}
